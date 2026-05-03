@@ -161,7 +161,7 @@ blueprint_theme_menu() {
 
         case $subchoice in
             1)
-                run_remote_script "https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/cd/Blueprint2.sh"
+                run_remote_script "https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/Blueprint2.sh"
                 ;;
             2)
                 print_header_rule
