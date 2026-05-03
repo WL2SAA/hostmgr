@@ -261,13 +261,13 @@ while true; do
     read -r choice
 
     case $choice in
-        1) run_remote_script "https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/cd/panel2.sh" ;;
-        2) run_remote_script "https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/cd/wing2.sh" ;;
-        3) run_remote_script "https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/cd/uninstall2.sh" ;;
+        1) run_remote_script "https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/cd/panel2.sh" ;;
+        2) run_remote_script "https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/cd/wing2.sh" ;;
+        3) run_remote_script "https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/cd/uninstall2.sh" ;;
         4) blueprint_theme_menu ;;
-        5) run_remote_script "https://raw.githubusercontent.com/JishnuTheGamer/Vps/refs/heads/main/cd/cloudflare.sh" ;;
+        5) run_remote_script "https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/cd/cloudflare.sh" ;;
         6) system_info ;;
-        7) run_remote_script "https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/tools/Tailscale.sh" ;;
+        7) run_remote_script "https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/srv/tools/Tailscale.sh" ;;
         8)
             print_header_rule
             big_header "DATABASE SETUP"
