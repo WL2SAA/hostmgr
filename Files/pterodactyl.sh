@@ -34,8 +34,8 @@ cat << "EOF"
 EOF
 echo -e "${C_RESET}"
 line
-echo -e "${C_GREEN}⚡ Fast • Stable • Production Ready${C_RESET}"
-echo -e "${C_PURPLE}🧠 The Coding Hub — 2026 Installer${C_RESET}"
+echo -e "${C_GREEN}⚡NIX ${C_RESET}"
+echo -e "${C_PURPLE}🧠 The Coding Hub ${C_RESET}"
 line
 }
 

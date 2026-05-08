@@ -213,7 +213,7 @@ show_menu() {
     clear
     print_header_rule
     echo -e "${RED}           🚀 WL2SA HOSTING MANAGER            ${NC}"
-    echo -e "${RED}              made by WL2SA                    ${NC}"
+    echo -e "${RED}      Modified by WL2SA & Made by Nobita                 ${NC}"
     print_header_rule
 
     big_header "MAIN MENU"
@@ -310,7 +310,7 @@ MYSQL_SCRIPT
         0)
             echo -e "${GREEN}Exiting WL2SA Hosting Manager...${NC}"
             print_header_rule
-            echo -e "${RED}           Thank you for using our tools!       ${NC}"
+            echo -e "${RED}           Thank you for using our tools! & Made By Nobita       ${NC}"
             print_header_rule
             sleep 1
             exit 0

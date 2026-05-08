@@ -250,6 +250,6 @@ fi
 
 echo -e ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}           Thank you for using Wl2sa-hosting!   ${NC}"
+echo -e "${CYAN}Thank you for using Wl2sa-hosting! & Nobita Hosting  ${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""

@@ -150,7 +150,7 @@ show_menu() {
     clear
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${CYAN}            🗑️ PTERODACTYL UNINSTALLER            ${NC}"
-    echo -e "${CYAN}                 by Wl2sa-hosting               ${NC}"
+    echo -e "${CYAN}         by Wl2sa-hosting & Nobita Hosting              ${NC}"
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e ""
     echo -e "${YELLOW}╔═══════════════════════════════════════════════╗${NC}"
