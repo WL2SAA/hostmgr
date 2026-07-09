@@ -1,5 +1,4 @@
 # hostmgr
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/WL2SAA/hostmgr)
 
 `hostmgr` is a collection of bash scripts designed to streamline the management of hosting environments, with a primary focus on the Pterodactyl gaming panel and local QEMU-based virtual machines. It provides menu-driven interfaces for installation, configuration, and maintenance tasks.
 
