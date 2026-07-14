@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hostmgr | Terminal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        term: {
+                            bg: '#000000',      // Pure black
+                            panel: '#0a0a0a',   // Off-black for slight depth
+                            border: '#333333',  // Dark grey for borders
+                            text: '#ffffff',    // Pure white for primary text
+                            muted: '#888888',   // Grey for secondary text
+                            accent: '#4ade80'   // Terminal Green
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Blocky, minimalist scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+            border-left: 1px solid #333333;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4ade80; 
+        }
+        
+        /* Terminal blinking cursor effect */
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-term-bg text-term-text font-sans antialiased selection:bg-term-accent selection:text-black flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-term-bg border-b border-term-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 font-mono text-sm">
+                <div class="flex items-center space-x-3">
+                    <span class="text-term-accent font-bold text-lg">~/hostmgr</span>
+                    <span class="cursor-blink w-2 h-5 bg-term-accent hidden sm:inline-block"></span>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-term-text hover:text-term-accent">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-term-muted hover:text-term-text transition-colors">./home</a>
+                    <a href="#features" class="text-term-muted hover:text-term-text transition-colors">./features</a>
+                    <a href="#scripts" class="text-term-muted hover:text-term-text transition-colors">./scripts</a>
+                    <a href="#about" class="text-term-muted hover:text-term-text transition-colors">./about</a>
+                    <span class="text-term-border">|</span>
+                    <a href="https://harshit-weld.vercel.app" target="_blank" class="text-term-muted hover:text-term-accent transition-colors flex items-center">
+                        <i data-lucide="external-link" class="w-3 h-3 mr-1"></i> Portfolio
+                    </a>
+                    <a href="https://github.com/WL2SAA/hostmgr" target="_blank" class="border border-term-border hover:border-term-accent hover:text-term-accent px-4 py-1.5 transition-colors flex items-center">
+                        <i data-lucide="github" class="w-4 h-4 mr-2"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden border-t border-term-border bg-term-bg font-mono text-sm">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-term-muted hover:text-term-text">./home</a>
+                <a href="#features" class="block px-3 py-2 text-term-muted hover:text-term-text">./features</a>
+                <a href="#scripts" class="block px-3 py-2 text-term-muted hover:text-term-text">./scripts</a>
+                <a href="#about" class="block px-3 py-2 text-term-muted hover:text-term-text">./about</a>
+                <a href="https://harshit-weld.vercel.app" target="_blank" class="block px-3 py-2 text-term-accent">./portfolio</a>
+                <a href="https://github.com/WL2SAA/hostmgr" target="_blank" class="block px-3 py-2 text-term-text">./github</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="flex-grow pt-16">
+        
+        <!-- Hero Section -->
+        <section id="home" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 border-b border-term-border">
+            <div class="flex-1 space-y-8">
+                <div class="font-mono text-term-muted text-sm border border-term-border inline-block px-3 py-1">
+                    v1.0.0-stable
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-mono font-bold leading-tight">
+                    Manage your<br/>
+                    <span class="text-term-accent">Linux Hosting</span><br/>
+                    environment.
+                </h1>
+                <p class="text-term-muted max-w-xl text-base">
+                    A powerful collection of bash scripts designed to automate the management of Pterodactyl gaming panels and local QEMU-based virtual machines via streamlined TUI menus.
+                </p>
+                <div class="flex flex-wrap gap-4 font-mono text-sm">
+                    <a href="#quickstart" class="bg-term-text text-term-bg hover:bg-term-accent hover:text-term-bg px-6 py-3 font-bold transition-colors flex items-center">
+                        > GET_STARTED
+                    </a>
+                    <a href="#features" class="border border-term-border hover:border-term-text text-term-text px-6 py-3 transition-colors">
+                        READ_DOCS
+                    </a>
+                </div>
+            </div>
+
+            <!-- Terminal Quick Start -->
+            <div id="quickstart" class="flex-1 w-full max-w-2xl">
+                <div class="bg-term-panel border border-term-border font-mono text-sm">
+                    <!-- TTY Header -->
+                    <div class="bg-term-bg border-b border-term-border px-4 py-2 flex justify-between items-center text-term-muted text-xs">
+                        <span>root@server:~</span>
+                        <span>bash</span>
+                    </div>
+                    <!-- TTY Body -->
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-term-muted"># Launch Main Manager (Pterodactyl & Services)</span>
+                                <button id="btn-copy-main" onclick="copyCode('code-main', 'btn-copy-main')" class="text-term-muted hover:text-term-text transition-colors flex items-center text-xs uppercase tracking-wider">
+                                    [Copy]
+                                </button>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-term-accent mr-2">$</span>
+                                <div class="text-term-text break-all selection:bg-term-muted" id="code-main">bash <(curl -fsSL https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/hostmgr.sh)</div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-term-muted"># Launch Standalone QEMU VPS Manager</span>
+                                <button id="btn-copy-vps" onclick="copyCode('code-vps', 'btn-copy-vps')" class="text-term-muted hover:text-term-text transition-colors flex items-center text-xs uppercase tracking-wider">
+                                    [Copy]
+                                </button>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-term-accent mr-2">$</span>
+                                <div class="text-term-text break-all selection:bg-term-muted" id="code-vps">bash <(curl -fsSL https://raw.githubusercontent.com/WL2SAA/hostmgr/refs/heads/main/vps.sh)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-24 border-b border-term-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16 font-mono">
+                    <h2 class="text-2xl font-bold text-term-text mb-2"><span class="text-term-accent">#</span> Core Features</h2>
+                    <p class="text-term-muted">Capabilities included in the ecosystem.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature -->
+                    <div class="border border-term-border p-6 hover:border-term-accent transition-colors group">
+                        <i data-lucide="terminal-square" class="w-8 h-8 text-term-text mb-4 group-hover:text-term-accent transition-colors"></i>
+                        <h3 class="text-lg font-mono font-bold mb-3">Pterodactyl Management</h3>
+                        <p class="text-term-muted text-sm leading-relaxed">Automates the installation, updating, user creation, and uninstallation of the Pterodactyl Panel and Wings.</p>
+                    </div>
+                    <!-- Feature -->
+                    <div class="border border-term-border p-6 hover:border-term-accent transition-colors group">
+                        <i data-lucide="server" class="w-8 h-8 text-term-text mb-4 group-hover:text-term-accent transition-colors"></i>
+                        <h3 class="text-lg font-mono font-bold mb-3">VPS Management</h3>
+                        <p class="text-term-muted text-sm leading-relaxed">Comprehensive QEMU-based VM manager to create, run, and manage local Linux VMs (Ubuntu, Debian, Fedora) with cloud-init.</p>
+                    </div>
+                    <!-- Feature -->
+                    <div class="border border-term-border p-6 hover:border-term-accent transition-colors group">
+                        <i data-lucide="layers" class="w-8 h-8 text-term-text mb-4 group-hover:text-term-accent transition-colors"></i>
+                        <h3 class="text-lg font-mono font-bold mb-3">Panel Customization</h3>
+                        <p class="text-term-muted text-sm leading-relaxed">Easily install the Blueprint framework and associated themes/extensions to visually enhance your panel.</p>
+                    </div>
+                    <!-- Feature -->
+                    <div class="border border-term-border p-6 hover:border-term-accent transition-colors group">
+                        <i data-lucide="network" class="w-8 h-8 text-term-text mb-4 group-hover:text-term-accent transition-colors"></i>
+                        <h3 class="text-lg font-mono font-bold mb-3">Networking Tools</h3>
+                        <p class="text-term-muted text-sm leading-relaxed">Quickly deploy Cloudflare Tunnels for secure public access, and Tailscale for robust private networking without opening ports.</p>
+                    </div>
+                    <!-- Feature -->
+                    <div class="border border-term-border p-6 hover:border-term-accent transition-colors group">
+                        <i data-lucide="database" class="w-8 h-8 text-term-text mb-4 group-hover:text-term-accent transition-colors"></i>
+                        <h3 class="text-lg font-mono font-bold mb-3">Database Setup</h3>
+                        <p class="text-term-muted text-sm leading-relaxed">Streamline database workflows. Quickly create MySQL/MariaDB users, configure databases, and securely enable remote access.</p>
+                    </div>
+                    <!-- Feature -->
+                    <div class="border border-term-border p-6 hover:border-term-accent transition-colors group">
+                        <i data-lucide="activity" class="w-8 h-8 text-term-text mb-4 group-hover:text-term-accent transition-colors"></i>
+                        <h3 class="text-lg font-mono font-bold mb-3">System Utilities</h3>
+                        <p class="text-term-muted text-sm leading-relaxed">View critical system information, monitor resource usage, and manage background services through a unified TUI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scripts Section -->
+        <section id="scripts" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-term-border">
+            <div class="mb-16 font-mono">
+                <h2 class="text-2xl font-bold text-term-text mb-2"><span class="text-term-accent">#</span> Scripts Overview</h2>
+                <p class="text-term-muted">Directory of executable components.</p>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Primary Scripts -->
+                <div>
+                    <h3 class="text-sm font-mono text-term-muted mb-4 uppercase tracking-widest">--- Primary Entry Points ---</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-term-panel border border-term-border p-5">
+                            <div class="font-mono text-term-text font-bold mb-3 flex items-center">
+                                <i data-lucide="file-code" class="w-4 h-4 mr-2 text-term-accent"></i> hostmgr.sh
+                            </div>
+                            <p class="text-term-muted text-sm">The central management script for hosting services. Provides a robust TUI to access functionalities related to Pterodactyl, networking, and databases.</p>
+                        </div>
+                        <div class="bg-term-panel border border-term-border p-5">
+                            <div class="font-mono text-term-text font-bold mb-3 flex items-center">
+                                <i data-lucide="file-code" class="w-4 h-4 mr-2 text-term-accent"></i> vps.sh
+                            </div>
+                            <p class="text-term-muted text-sm">Comprehensive QEMU-based VM manager. Create, start, stop, delete, edit, and resize local Linux VMs. Supports cloud-init configurations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component Scripts -->
+                <div>
+                    <h3 class="text-sm font-mono text-term-muted mb-4 uppercase tracking-widest">--- Component Scripts ---</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="border border-term-border p-4 hover:bg-term-panel transition-colors">
+                            <div class="font-mono text-term-text font-bold mb-2">./panel2.sh</div>
+                            <p class="text-term-muted text-xs">Lifecycle management of Pterodactyl Panel: install, administrative user creation, updates, and removal.</p>
+                        </div>
+                        <div class="border border-term-border p-4 hover:bg-term-panel transition-colors">
+                            <div class="font-mono text-term-text font-bold mb-2">./wing2.sh</div>
+                            <p class="text-term-muted text-xs">Installation and configuration of Pterodactyl Wings, Docker setup, and daemon auto-configuration.</p>
+                        </div>
+                        <div class="border border-term-border p-4 hover:bg-term-panel transition-colors">
+                            <div class="font-mono text-term-text font-bold mb-2">./uninstall2.sh</div>
+                            <p class="text-term-muted text-xs">Safe and complete removal utility for Pterodactyl Panel and/or Wings. Purges services and databases.</p>
+                        </div>
+                        <div class="border border-term-border p-4 hover:bg-term-panel transition-colors">
+                            <div class="font-mono text-term-text font-bold mb-2">./Blueprint2.sh</div>
+                            <p class="text-term-muted text-xs">Installer for the Blueprint framework to extend Pterodactyl Panel with themes and extensions.</p>
+                        </div>
+                        <div class="border border-term-border p-4 hover:bg-term-panel transition-colors">
+                            <div class="font-mono text-term-text font-bold mb-2">./cloudflare.sh</div>
+                            <p class="text-term-muted text-xs">Installs Cloudflare Tunnel (cloudflared) to securely expose your panel without opening firewall ports.</p>
+                        </div>
+                        <div class="border border-term-border p-4 hover:bg-term-panel transition-colors">
+                            <div class="font-mono text-term-text font-bold mb-2">./Tailscale.sh</div>
+                            <p class="text-term-muted text-xs">Installer and uninstaller for Tailscale, a zero-config VPN for creating secure private networks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="border border-term-border bg-term-panel p-8 md:p-12 relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div class="absolute top-0 right-0 p-4 opacity-10">
+                    <i data-lucide="cpu" class="w-32 h-32"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="font-mono text-term-accent mb-6">
+                        > whoami
+                    </div>
+                    <h2 class="text-3xl font-bold mb-1">Harshit (@WL2SAA)</h2>
+                    <p class="text-term-muted font-mono text-sm mb-6">Linux Enthusiast | Developer | SysAdmin</p>
+                    
+                    <p class="text-term-text leading-relaxed mb-8 max-w-2xl">
+                        Passionate Linux enthusiast and developer focused on simplifying server administration and hosting workflows. 
+                        The creator of <strong>hostmgr</strong>, dedicated to bringing automated, robust, and easily accessible 
+                        management tools to the sysadmin and gaming community. By leveraging shell scripting and TUI interfaces, 
+                        my goal is to turn hours of setup into seconds.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 font-mono text-sm">
+                        <a href="https://harshit-weld.vercel.app" taget="_blank" rel="noopener noreferrer" class="bg-term-text text-term-bg hover:bg-term-accent px-6 py-2 transition-colors flex items-center font-bold">
+                            <i data-lucide="globe" class="w-4 h-4 mr-2"></i> PORTFOLIO
+                        </a>
+                        <a href="https://github.com/WL2SAA" target="_blank" rel="noopener noreferrer" class="border border-term-border hover:border-term-text text-term-text px-6 py-2 transition-colors flex items-center">
+                            <i data-lucide="github" class="w-4 h-4 mr-2"></i> GITHUB
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-term-border py-8 font-mono text-xs text-term-muted text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>System Online. &copy; 2024 hostmgr.</p>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/WL2SAA/hostmgr" class="hover:text-term-text transition-colors">/repo</a>
+                    <a href="https://harshit-weld.vercel.app" class="hover:text-term-text transition-colors">/author</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Copy to clipboard functionality using fallback execCommand for maximum compatibility
+        function copyCode(textId, btnId) {
+            const textToCopy = document.getElementById(textId).innerText;
+            const btn = document.getElementById(btnId);
+            const originalText = btn.innerText;
+            
+            // Create a temporary textarea to copy text
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = textToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                document.execCommand('copy');
+                btn.innerText = '[COPIED]';
+                btn.classList.add('text-term-accent');
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('text-term-accent');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text', err);
+                btn.innerText = '[ERROR]';
+            } finally {
+                document.body.removeChild(tempTextArea);
+            }
+        }
+    </script>
+</body>
+</html>
