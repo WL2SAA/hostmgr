@@ -5,7 +5,17 @@ if [ "$(id -u)" -ne 0 ]; then
     echo "Please run as root."
     exit 1
 fi
-
+# Rainbow colors function
+rainbow_text() {
+    local text="$1"
+    local colors=('\033[31m' '\033[33m' '\033[32m' '\033[36m' '\033[34m' '\033[35m')
+    local color_index=0
+    for (( i=0; i<${#text}; i++ )); do
+        echo -ne "${colors[color_index]}${text:$i:1}"
+        color_index=$(( (color_index + 1) % ${#colors[@]} ))
+    done
+    echo -e '\033[0m'
+    }
 
 # Rainbow banner
 rainbow_banner() {
