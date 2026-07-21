@@ -7,7 +7,6 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 
-
 # Rainbow banner
 rainbow_banner() {
    echo -e  
