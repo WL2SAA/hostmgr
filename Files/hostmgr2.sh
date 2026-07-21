@@ -5,17 +5,6 @@ if [ "$(id -u)" -ne 0 ]; then
     echo "Please run as root."
     exit 1
 fi
-
-# Rainbow colors function
-rainbow_text() {
-    local text="$1"
-    local colors=('\033[31m' '\033[33m' '\033[32m' '\033[36m' '\033[34m' '\033[35m')
-    local color_index=0
-    for (( i=0; i<${#text}; i++ )); do
-        echo -ne "${colors[color_index]}${text:$i:1}"
-        color_index=$(( (color_index + 1) % ${#colors[@]} ))
-    done
-    echo -e '\033[0m'
 }
 
 # Rainbow banner
@@ -36,22 +25,22 @@ while true; do
 
     echo
     echo "=================================="
-    rainbow_text "         SERVER TOOLKIT"
+    echo "         SERVER TOOLKIT"
     echo "=================================="
-    echo -e "\033[31m1\033[0m) SSH FIX"
-    echo -e "\033[33m2\033[0m) CLOUDFLARE INSTALLER"
-    echo -e "\033[32m3\033[0m) TAILSCALE INSTALL & UP"
-    echo -e "\033[36m4\033[0m) SSHX INSTALLER"
-    echo -e "\033[34m5\033[0m) SYSTEM UPDATER"
-    echo -e "\033[35m6\033[0m) FASTFETCH INSTALLER"
-    echo -e "\033[31m7\033[0m) PTERODACTYL INSTALLER"
-    echo -e "\033[33m8\033[0m) PUFFER PANEL INSTALLER"
-    echo -e "\033[32m9\033[0m) RDP WINDOWS 10"
-    echo -e "\033[36m10\033[0m) PROXMOX INSTALL"
-    echo -e "\033[34m11\033[0m) REVIACTYL THEME"
-    echo -e "\033[35m12\033[0m) VPS ISSUE FIXER"
-    echo -e "\033[31m13\033[0m) SYSTEM INFORMATION"
-    echo -e "\033[33m0\033[0m) EXIT"
+    echo -e " SSH FIX"
+    echo -e " CLOUDFLARE INSTALLER"
+    echo -e " TAILSCALE INSTALL & UP"
+    echo -e " SSHX INSTALLER"
+    echo -e " SYSTEM UPDATER"
+    echo -e " FASTFETCH INSTALLER"
+    echo -e " PTERODACTYL INSTALLER"
+    echo -e " PUFFER PANEL INSTALLER"
+    echo -e " RDP WINDOWS 10"
+    echo -e " PROXMOX INSTALL"
+    echo -e " REVIACTYL THEME"
+    echo -e " VPS ISSUE FIXER"
+    echo -e " SYSTEM INFORMATION"
+    echo -e " EXIT"
     echo "=================================="
     echo
 
@@ -176,7 +165,7 @@ EOF
 
             echo
             echo "========================================="
-            rainbow_text "Puffer Panel Installation Complete!"
+            echo "Puffer Panel Installation Complete!"
             echo "========================================="
             echo "Login Details:"
             echo "Email:    foxytoux@gmail.com"
@@ -213,7 +202,7 @@ EOF
 
             echo
             echo "========================================="
-            rainbow_text "Windows 10 RDP Container Started!"
+            echo "Windows 10 RDP Container Started!"
             echo "========================================="
             echo "Access Details:"
             echo "VNC:        http://$(curl -s ifconfig.me):6080"
@@ -248,7 +237,7 @@ EOF
 
             echo
             echo "========================================="
-            rainbow_text "Proxmox Container Started!"
+            echo "Proxmox Container Started!"
             echo "========================================="
             echo "Access Details:"
             echo "VNC:        http://$(curl -s ifconfig.me):6080"
@@ -303,7 +292,7 @@ EOF
 
             echo
             echo "========================================="
-            rainbow_text "Reviactyl Theme Installed Successfully!"
+            echo "Reviactyl Theme Installed Successfully!"
             echo "========================================="
             echo "Your Pterodactyl panel now has the Reviactyl theme!"
             echo "========================================="
@@ -312,7 +301,7 @@ EOF
 
         12)
             echo "========================================="
-            rainbow_text "VPS Issue Fixer - HTTP/2 Protocol Fix"
+            echo "VPS Issue Fixer - HTTP/2 Protocol Fix"
             echo "========================================="
             echo
 
@@ -387,7 +376,7 @@ EOF
 
             echo
             echo "========================================="
-            rainbow_text "VPS Issues Fixed Successfully!"
+            echo"VPS Issues Fixed Successfully!"
             echo "========================================="
             echo "Applied fixes:"
             echo "âœ“ Disabled IPv6 (if causing issues)"
@@ -412,103 +401,85 @@ EOF
         13)
             clear
             echo "========================================="
-            rainbow_text "         SYSTEM INFORMATION"
+            echo"         SYSTEM INFORMATION"
             echo "========================================="
             echo
 
             # Hostname
-            echo -e "\033[31mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[33mâ–¶ \033[0m"
-            rainbow_text "HOSTNAME"
-            echo -e "\033[32m  $(hostname)\033[0m"
+            echo -e "HOSTNAME"
+            echo -e "$(hostname)"
 
             # RAM Usage
-            echo -e "\033[34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[35mâ–¶ \033[0m"
-            rainbow_text "RAM"
+            echo -e "RAM"
             total_ram=$(free -h | awk '/^Mem:/ {print $2}')
             used_ram=$(free -h | awk '/^Mem:/ {print $3}')
             free_ram=$(free -h | awk '/^Mem:/ {print $4}')
-            echo -e "\033[32m  Total: $total_ram\033[0m"
-            echo -e "\033[33m  Used:  $used_ram\033[0m"
+            echo -e "Total: $total_ram"
+            echo -e "Used:  $used_ram"
             echo -e "\033[36m  Free:  $free_ram\033[0m"
 
             # CPU Information
-            echo -e "\033[31mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[33mâ–¶ \033[0m"
-            rainbow_text "CPU"
+            
+            
+            echo -e "CPU"
             cpu_model=$(lscpu | grep "Model name" | awk -F': ' '{print $2}' | head -1)
             cpu_cores=$(nproc)
             cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1)
-            echo -e "\033[32m  Model: $cpu_model\033[0m"
-            echo -e "\033[33m  Cores: $cpu_cores\033[0m"
-            echo -e "\033[36m  Usage: ${cpu_usage}%\033[0m"
+            echo -e "Model: $cpu_model"
+            echo -e "Cores: $cpu_cores"
+            echo -e "Usage: ${cpu_usage}"
 
             # Disk Usage
-            echo -e "\033[34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[35mâ–¶ \033[0m"
-            rainbow_text "DISK"
+            echo -e"DISK"
             disk_total=$(df -h / | awk 'NR==2 {print $2}')
             disk_used=$(df -h / | awk 'NR==2 {print $3}')
             disk_free=$(df -h / | awk 'NR==2 {print $4}')
             disk_usage_percent=$(df -h / | awk 'NR==2 {print $5}')
-            echo -e "\033[32m  Total: $disk_total\033[0m"
-            echo -e "\033[33m  Used:  $disk_used\033[0m"
-            echo -e "\033[36m  Free:  $disk_free\033[0m"
-            echo -e "\033[31m  Usage: $disk_usage_percent\033[0m"
+            echo -e "Total: $disk_total"
+            echo -e "Used:  $disk_used"
+            echo -e "Free:  $disk_free"
+            echo -e "Usage: $disk_usage_percent"
 
             # Uptime
-            echo -e "\033[31mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[33mâ–¶ \033[0m"
-            rainbow_text "UPTIME"
+            echo -e "UPTIME"
             uptime_info=$(uptime -p | sed 's/up //')
             load_average=$(uptime | awk -F'load average:' '{print $2}')
-            echo -e "\033[32m  Time: $uptime_info\033[0m"
-            echo -e "\033[36m  Load: $load_average\033[0m"
+            echo -e "Time: $uptime_info"
+            echo -e "Load: $load_average"
 
             # Public IPv4
-            echo -e "\033[34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[35mâ–¶ \033[0m"
-            rainbow_text "PUBLIC IPv4"
+            echo -e "PUBLIC IPv4"
             public_ipv4=$(curl -s4 ifconfig.me 2>/dev/null || curl -s4 icanhazip.com 2>/dev/null || echo "Not available")
-            echo -e "\033[32m  $public_ipv4\033[0m"
+            echo -e "$public_ipv4"
 
             # Public IPv6
-            echo -e "\033[31mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[33mâ–¶ \033[0m"
-            rainbow_text "PUBLIC IPv6"
+            echo -e "PUBLIC IPv6"
             public_ipv6=$(curl -s6 ifconfig.me 2>/dev/null || curl -s6 icanhazip.com 2>/dev/null || echo "Not available")
-            echo -e "\033[32m  $public_ipv6\033[0m"
+            echo -e "$public_ipv6"
 
             # Private IPv4
-            echo -e "\033[34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[35mâ–¶ \033[0m"
-            rainbow_text "PRIVATE IPv4"
+            echo -e "PRIVATE IPv4"
             private_ipv4=$(hostname -I | awk '{print $1}')
-            echo -e "\033[32m  $private_ipv4\033[0m"
+            echo -e "$private_ipv4"
 
             # Private IPv6
-            echo -e "\033[31mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[33mâ–¶ \033[0m"
-            rainbow_text "PRIVATE IPv6"
+            echo -e "PRIVATE IPv6"
             private_ipv6=$(hostname -I | awk '{print $2}')
             if [[ -z "$private_ipv6" ]]; then
                 private_ipv6="Not available"
             fi
-            echo -e "\033[32m  $private_ipv6\033[0m"
+            echo -e "$private_ipv6"
 
             # Operating System
-            echo -e "\033[34mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[0m"
-            echo -ne "\033[35mâ–¶ \033[0m"
-            rainbow_text "OPERATING SYSTEM"
+            echo -e "OPERATING SYSTEM"
             os_info=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
             kernel=$(uname -r)
-            echo -e "\033[32m  OS: $os_info\033[0m"
-            echo -e "\033[36m  Kernel: $kernel\033[0m"
+            echo -e "OS: $os_info"
+            echo -e "Kernel: $kernel"
 
             echo
             echo "========================================="
-            rainbow_text "     END OF SYSTEM INFORMATION"
+            echo "     END OF SYSTEM INFORMATION"
             echo "========================================="
             echo
             ;;
@@ -528,7 +499,7 @@ EOF
 done
 tinue..."
 done
-          rainbow_text "     END OF SYSTEM INFORMATION"
+          echo   "     END OF SYSTEM INFORMATION"
             echo "========================================="
             echo
             ;;
